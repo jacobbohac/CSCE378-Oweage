@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.jacob.oweage.ContactsPage">
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical" android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical" android:layout_width="fill_parent"
+            android:layout_height="wrap_content" android:padding="5dp">
+
+
+            <Button
+                android:id="@+id/buttonA"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:text="Pribnow" android:textSize="25dp" />
+
+            <Button
+                android:id="@+id/buttonB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/buttonA"
+                android:text="Neukirch" android:textSize="25dp" />
+
+            <Button
+                android:id="@+id/buttonC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/buttonB"
+                android:text="Lee" android:textSize="25dp" />
+
+
+            <Button
+                android:id="@+id/buttonD"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/buttonC"
+                android:text="Bohac" android:textSize="25dp" />
+
+
+
+            <Button
+                android:id="@+id/buttonE"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/buttonD"
+                android:text="Bridges" android:textSize="25dp" />
+
+            <Button
+                android:id="@+id/buttonF"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/buttonE"
+                android:text="Zany" android:textSize="25dp" />
+
+            <Button
+                android:id="@+id/buttonG"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/buttonF"
+                android:text="plooperd aofp" android:textSize="25dp" />
+
+            <Button
+                android:id="@+id/buttonH"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/buttonG"
+                android:text="Yes" android:textSize="25dp" />
+
+            <Button
+                android:id="@+id/buttonI"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/buttonH"
+                android:text="Ughghghhghghghghg" android:textSize="25dp" />
+
+
+
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>
