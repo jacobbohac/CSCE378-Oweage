@@ -1,11 +1,16 @@
 package com.example.jacob.oweage;
 
+import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
+
+import java.util.ArrayList;
 
 
 public class ContactInfoPage extends ActionBarActivity {
@@ -15,22 +20,42 @@ public class ContactInfoPage extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_info_page);
 
-        RelativeLayout rr = new RelativeLayout(this);
+        ScrollView scroll = (ScrollView)findViewById(R.id.scrollView);
 
-        Button b1 = new Button(this);
-        Button b2 = new Button(this);
+        LinearLayout linearLayout = new LinearLayout(this);
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
 
-        b1.setId(R.id.buttonA);
-        b2.setId(R.id.buttonB);
+        String s = getIntent().getExtras().getString("name");
 
-        b1.setText("Click me");
-        b2.setText("Button 1");
-        rr.addView(b1);
-        rr.addView(b2);
+        //MainActivity ma = new MainActivity();
+        ArrayList<Contact> list = MainActivity.contactList;
+        Contact c1 = new Contact("c1");
 
-        setContentView(rr);
+        System.out.println("list size = " + list.size());
+
+        for(Contact c : list){
+            System.err.println("\n\n" + s + "     " + c.getName() + "\n\n");
+            if(s.equals(c.getName())){
+                c1 = c;
+                System.out.println(c1.getRelation());
+
+            }
+        }
 
 
+        for (int i = 0; i < 5; i++) {
+
+            Button b = new Button(this);
+            b.setWidth(1000);
+            b.setHeight(25);
+            b.setTextColor(Color.BLACK);
+            b.setText(c1.getRelation());
+            b.setId(100 + i);
+
+            linearLayout.addView(b);
+        }
+
+        scroll.addView(linearLayout);
 
     }
 

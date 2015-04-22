@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends ActionBarActivity {
 
-    ArrayList<Contact> contactList;
+    public static ArrayList<Contact> contactList = new ArrayList<Contact>();
     public static final String[] CONTACTS = new String[] {
             "Aaron Aardvark",
             "Anita Addams",
@@ -47,10 +47,17 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void initContacts(){
-
+        //Contact c = new Contact("Aaron Aardvark");
+        //contactList.add(c);
         for(String name : CONTACTS){
-            contactList.add(new Contact(name));
+
+            if(name != null) {
+                contactList.add(new Contact(name, "friends"));
+
+            }
         }
+
+        System.out.println("SIZE: " + CONTACTS.length);
 
     }
 
