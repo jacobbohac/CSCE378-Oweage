@@ -27,8 +27,8 @@ public class EventPage extends ActionBarActivity {
     }
 
     private static final String[] CONTACTS = new String[] {
-            "PRIBNOW",
-            "NEUKIRCH",
+            "Aaron Aardvark",
+            "Anita Addams",
             "LEE",
             "BOHAC",
             "BRIDGES",
