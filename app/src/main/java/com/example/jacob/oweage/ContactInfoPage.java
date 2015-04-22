@@ -4,6 +4,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.RelativeLayout;
 
 
 public class ContactInfoPage extends ActionBarActivity {
@@ -12,6 +14,24 @@ public class ContactInfoPage extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_info_page);
+
+        RelativeLayout rr = new RelativeLayout(this);
+
+        Button b1 = new Button(this);
+        Button b2 = new Button(this);
+
+        b1.setId(R.id.buttonA);
+        b2.setId(R.id.buttonB);
+
+        b1.setText("Click me");
+        b2.setText("Button 1");
+        rr.addView(b1);
+        rr.addView(b2);
+
+        setContentView(rr);
+
+
+
     }
 
 

@@ -1,9 +1,11 @@
 package com.example.jacob.oweage;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 
 public class ContactsPage extends ActionBarActivity {
@@ -20,6 +22,11 @@ public class ContactsPage extends ActionBarActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_contacts_page, menu);
         return true;
+    }
+
+    public void goContactInfo(View view){
+        Intent intent = new Intent(this, ContactInfoPage.class);
+        startActivity(intent);
     }
 
     @Override

@@ -9,15 +9,50 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.ArrayList;
+
 
 public class MainActivity extends ActionBarActivity {
+
+    ArrayList<Contact> contactList;
+    public static final String[] CONTACTS = new String[] {
+            "Aaron Aardvark",
+            "Anita Addams",
+            "Dexter Addams",
+            "Digit Addams",
+            "Gomez Addams",
+            "Granny Addams",
+            "Sir Agravaine",
+            "Molly Azog",
+            "Susan Baaa-sheep",
+            "Bryan Baelish",
+            "Christian Bale",
+            "Jeff Bridges",
+            "Hagrid Carmichael",
+            "Michael Chaggart",
+            "Lily Dagger",
+            "Angelina Darkside",
+            "Ezekiel Doggy",
+            "Stan Kubrick",
+            "Rodrigo Lopez",
+            "Alejandro Studman",
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        initContacts();
     }
 
+    public void initContacts(){
+
+        for(String name : CONTACTS){
+            contactList.add(new Contact(name));
+        }
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -20,35 +20,11 @@ public class EventPage extends ActionBarActivity {
         setContentView(R.layout.activity_event_page);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_dropdown_item_1line, CONTACTS);
+                android.R.layout.simple_dropdown_item_1line, MainActivity.CONTACTS);
         AutoCompleteTextView textView = (AutoCompleteTextView)
                 findViewById(R.id.autoCompleteTextView);
         textView.setAdapter(adapter);
     }
-
-    private static final String[] CONTACTS = new String[] {
-            "Aaron Aardvark",
-            "Anita Addams",
-            "Dexter Addams",
-            "Digit Addams",
-            "Gomez Addams",
-            "Granny Addams",
-            "Sir Agravaine",
-            "Molly Azog",
-            "Susan Baaa-sheep",
-            "Bryan Baelish",
-            "Christian Bale",
-            "Jeff Bridges",
-            "Hagrid Carmichael",
-            "Michael Chaggart",
-            "Lily Dagger",
-            "Angelina Darkside",
-            "Ezekiel Doggy",
-            "Stan Kubrick",
-            "Rodrigo Lopez",
-            "Alejandro Studman",
-    };
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
