@@ -29,11 +29,24 @@ public class EventPage extends ActionBarActivity {
     private static final String[] CONTACTS = new String[] {
             "Aaron Aardvark",
             "Anita Addams",
-            "LEE",
-            "BOHAC",
-            "BRIDGES",
-            "ZANY",
-            "PLOOPERD AOFP"
+            "Dexter Addams",
+            "Digit Addams",
+            "Gomez Addams",
+            "Granny Addams",
+            "Sir Agravaine",
+            "Molly Azog",
+            "Susan Baaa-sheep",
+            "Bryan Baelish",
+            "Christian Bale",
+            "Jeff Bridges",
+            "Hagrid Carmichael",
+            "Michael Chaggart",
+            "Lily Dagger",
+            "Angelina Darkside",
+            "Ezekiel Doggy",
+            "Stan Kubrick",
+            "Rodrigo Lopez",
+            "Alejandro Studman",
     };
 
 
