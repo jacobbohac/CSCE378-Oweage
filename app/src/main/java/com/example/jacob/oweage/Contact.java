@@ -10,6 +10,15 @@ public class Contact {
     private String relation = "";
     private ArrayList<TransactionEntry> history = new ArrayList<TransactionEntry>();
 
+    public Contact(String name) {
+        this.name = name;
+    }
+
+    public Contact(String name, String relation) {
+        this.name = name;
+        this.relation = relation;
+    }
+
     public void addTransactionEntry(TransactionEntry entry) {
         history.add(entry);
     }

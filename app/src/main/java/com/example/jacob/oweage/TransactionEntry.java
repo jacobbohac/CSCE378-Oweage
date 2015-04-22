@@ -8,6 +8,7 @@ public class TransactionEntry {
     private String description = "";
     private double amount = 0.0;
     //positive value means you paid for someone, negative means they paid for you
+
     public TransactionEntry(String date, String description, double amount) {
         this.date = date;
         this.description = description;
