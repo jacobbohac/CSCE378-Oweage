@@ -49,10 +49,21 @@ public class MainActivity extends ActionBarActivity {
     public void initContacts(){
         //Contact c = new Contact("Aaron Aardvark");
         //contactList.add(c);
+        ArrayList<TransactionEntry> entryList = new ArrayList<TransactionEntry>();
+
+        int j = 20;
+        double i = 7.00;
+        for (; j < 27; i += .75, j++) {
+            entryList.add(new TransactionEntry(new String("4/" + j + "/2015"), "Movie", i));
+        }
+
+        //TransactionEntry entry = new TransactionEntry("4/22/15", "Movie", 12.00);
         for(String name : CONTACTS){
 
             if(name != null) {
-                contactList.add(new Contact(name, "friends"));
+                Contact c = new Contact(name, "friends");
+                c.setHistory(entryList);
+                contactList.add(c);
 
             }
         }

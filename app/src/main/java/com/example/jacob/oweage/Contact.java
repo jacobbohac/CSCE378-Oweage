@@ -50,4 +50,12 @@ public class Contact {
     public void setHistory(ArrayList<TransactionEntry> entry) {
         this.history = entry;
     }
+
+    public double getBalance() {
+        double balance = 0.0;
+        for (TransactionEntry te : this.history) {
+            balance += te.getAmount();
+        }
+        return balance;
+    }
 }

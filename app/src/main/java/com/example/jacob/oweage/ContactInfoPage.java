@@ -1,14 +1,17 @@
 package com.example.jacob.oweage;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -20,6 +23,9 @@ public class ContactInfoPage extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_info_page);
 
+        LinearLayout contactInfo = (LinearLayout) findViewById(R.id.contactInfo);
+
+
         ScrollView scroll = (ScrollView)findViewById(R.id.scrollView);
 
         LinearLayout linearLayout = new LinearLayout(this);
@@ -27,7 +33,6 @@ public class ContactInfoPage extends ActionBarActivity {
 
         String s = getIntent().getExtras().getString("name");
 
-        //MainActivity ma = new MainActivity();
         ArrayList<Contact> list = MainActivity.contactList;
         Contact c1 = new Contact("c1");
 
@@ -42,17 +47,34 @@ public class ContactInfoPage extends ActionBarActivity {
             }
         }
 
+        TextView nameTV = new TextView(this);
+        TextView relationTV = new TextView(this);
+        nameTV.setText(c1.getName());
+        relationTV.setText(c1.getRelation());
+        contactInfo.addView(nameTV);
+        contactInfo.addView(relationTV);
 
-        for (int i = 0; i < 5; i++) {
+        TextView balanceTV = (TextView) findViewById(R.id.currentBalance);
+        balanceTV.setText(Double.toString(c1.getBalance()));
 
-            Button b = new Button(this);
-            b.setWidth(1000);
-            b.setHeight(25);
-            b.setTextColor(Color.BLACK);
-            b.setText(c1.getRelation());
-            b.setId(100 + i);
+        ArrayList<TransactionEntry> history = c1.getHistory();
 
-            linearLayout.addView(b);
+
+        for (int i = 0; i < history.size(); i++) {
+
+            TextView t = new TextView(this);
+
+
+            //Button b = new Button(this);
+            t.setWidth(1000);
+            t.setHeight(125);
+            t.setTextColor(Color.CYAN);
+            t.setText(history.get(i).getDate() +
+                    "\t\t" + history.get(i).getDescription() +
+                    "\t\t" + history.get(i).getAmount());
+            t.setId(100 + i);
+
+            linearLayout.addView(t);
         }
 
         scroll.addView(linearLayout);
@@ -65,6 +87,11 @@ public class ContactInfoPage extends ActionBarActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_contact_info_page, menu);
         return true;
+    }
+
+    public void startEvent(View view) {
+        Intent intent = new Intent(this, EventPage.class);
+        startActivity(intent);
     }
 
     @Override
