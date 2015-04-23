@@ -51,6 +51,7 @@ public class Contact {
         this.history = entry;
     }
 
+    // Returns the total outstanding balance between user and contact
     public double getBalance() {
         double balance = 0.0;
         for (TransactionEntry te : this.history) {

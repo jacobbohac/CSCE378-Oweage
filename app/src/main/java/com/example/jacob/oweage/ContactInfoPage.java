@@ -23,29 +23,18 @@ public class ContactInfoPage extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_info_page);
 
-        LinearLayout contactInfo = (LinearLayout) findViewById(R.id.contactInfo);
+        //LinearLayout contactInfo = (LinearLayout) findViewById(R.id.contactInfo);
 
 
         ScrollView scroll = (ScrollView) findViewById(R.id.scrollView);
-
         LinearLayout linearLayout = new LinearLayout(this);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
 
         String s = getIntent().getExtras().getString("name");
 
-        ArrayList<Contact> list = MainActivity.contactList;
         Contact c1 = new Contact("c1");
 
-        System.out.println("list size = " + list.size());
 
-        for (Contact c : list) {
-            System.err.println("\n\n" + s + "     " + c.getName() + "\n\n");
-            if (s.equals(c.getName())) {
-                c1 = c;
-                System.out.println(c1.getRelation());
-
-            }
-        }
 
         TextView nameTV = new TextView(this);
         TextView relationTV = new TextView(this);
@@ -53,13 +42,19 @@ public class ContactInfoPage extends ActionBarActivity {
         TextView name = (TextView) findViewById(R.id.contactName);
         TextView relation = (TextView) findViewById(R.id.contactRelation);
 
+        for (Contact c : MainActivity.contactList) {
+            if (s.equals(c.getName())) {
+                c1 = c;
+            }
+        }
+
+
+
         name.setText(c1.getName());
         relation.setText(c1.getRelation());
 
         nameTV.setText(c1.getName());
         relationTV.setText(c1.getRelation());
-        //contactInfo.addView(nameTV);
-        //contactInfo.addView(relationTV);
 
         TextView balanceTV = (TextView) findViewById(R.id.currentBalance);
         balanceTV.setText(Double.toString(c1.getBalance()));
@@ -126,7 +121,10 @@ public class ContactInfoPage extends ActionBarActivity {
         startActivity(intent);
     }
 
-
+    public void goSettings(View view) {
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

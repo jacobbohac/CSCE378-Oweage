@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.internal.widget.AdapterViewCompat;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import java.util.Date;
@@ -105,9 +107,6 @@ public class EventPage extends ActionBarActivity {
                 contact.addTransactionEntry(entry);
             }
         }
-
-        System.out.println("Sucessfully added transaction!");
-
     }
 
     public void goHome(View view) {
