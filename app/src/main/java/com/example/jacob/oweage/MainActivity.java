@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class MainActivity extends ActionBarActivity {
 
     public static ArrayList<Contact> contactList = new ArrayList<Contact>();
-    public static final String[] CONTACTS = new String[] {
+    public static final String[] CONTACTS = new String[]{
             "Aaron Aardvark",
             "Anita Addams",
             "Dexter Addams",
@@ -46,7 +46,7 @@ public class MainActivity extends ActionBarActivity {
         initContacts();
     }
 
-    public void initContacts(){
+    public void initContacts() {
         //Contact c = new Contact("Aaron Aardvark");
         //contactList.add(c);
         ArrayList<TransactionEntry> entryList = new ArrayList<TransactionEntry>();
@@ -54,13 +54,13 @@ public class MainActivity extends ActionBarActivity {
         int j = 20;
         double i = 7.00;
         for (; j < 27; i += .75, j++) {
-            entryList.add(new TransactionEntry(new String("4/" + j + "/2015"), "Movie", i));
+            entryList.add(new TransactionEntry(new String("4/" + j + "/2015"), "Movie", -i));
         }
 
         //TransactionEntry entry = new TransactionEntry("4/22/15", "Movie", 12.00);
-        for(String name : CONTACTS){
+        for (String name : CONTACTS) {
 
-            if(name != null) {
+            if (name != null) {
                 Contact c = new Contact(name, "friends");
                 c.setHistory(entryList);
                 contactList.add(c);
@@ -81,23 +81,18 @@ public class MainActivity extends ActionBarActivity {
 
     //Button btn = (Button)findViewById(R.id.button3);
 
-    public void sendMessage(View view)
-    {
+    public void sendMessage(View view) {
         Intent intent = new Intent(MainActivity.this, ContactsPage.class);
         startActivity(intent);
     }
 
-    /*
-    btn.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            startActivity(new Intent(MainActivity.this, ContactsPage.class));
-        }
-    });  */
-
-
-    public void startEvent(View view){
+    public void startEvent(View view) {
         Intent intent = new Intent(this, EventPage.class);
+        System.out.println("--->" + view.getTag());
+
+        // This passes a 0 for IOU event
+        //               1 for payback event
+        intent.putExtra("key", view.getTag().toString());
         startActivity(intent);
     }
 

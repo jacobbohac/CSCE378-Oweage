@@ -26,7 +26,7 @@ public class ContactInfoPage extends ActionBarActivity {
         LinearLayout contactInfo = (LinearLayout) findViewById(R.id.contactInfo);
 
 
-        ScrollView scroll = (ScrollView)findViewById(R.id.scrollView);
+        ScrollView scroll = (ScrollView) findViewById(R.id.scrollView);
 
         LinearLayout linearLayout = new LinearLayout(this);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
@@ -38,9 +38,9 @@ public class ContactInfoPage extends ActionBarActivity {
 
         System.out.println("list size = " + list.size());
 
-        for(Contact c : list){
+        for (Contact c : list) {
             System.err.println("\n\n" + s + "     " + c.getName() + "\n\n");
-            if(s.equals(c.getName())){
+            if (s.equals(c.getName())) {
                 c1 = c;
                 System.out.println(c1.getRelation());
 
@@ -56,6 +56,11 @@ public class ContactInfoPage extends ActionBarActivity {
 
         TextView balanceTV = (TextView) findViewById(R.id.currentBalance);
         balanceTV.setText(Double.toString(c1.getBalance()));
+        if (c1.getBalance() < 0) {
+            balanceTV.setTextColor(Color.RED);
+        } else {
+            balanceTV.setTextColor(Color.GREEN);
+        }
 
         ArrayList<TransactionEntry> history = c1.getHistory();
 
@@ -68,7 +73,11 @@ public class ContactInfoPage extends ActionBarActivity {
             //Button b = new Button(this);
             t.setWidth(1000);
             t.setHeight(125);
-            t.setTextColor(Color.CYAN);
+            if (history.get(i).getAmount() < 0) {
+                t.setTextColor(Color.RED);
+            } else {
+                t.setTextColor(Color.GREEN);
+            }
             t.setText(history.get(i).getDate() +
                     "\t\t" + history.get(i).getDescription() +
                     "\t\t" + history.get(i).getAmount());
@@ -91,6 +100,11 @@ public class ContactInfoPage extends ActionBarActivity {
 
     public void startEvent(View view) {
         Intent intent = new Intent(this, EventPage.class);
+        System.out.println("--->" + view.getTag());
+
+        // This passes a 0 for IOU event
+        //               1 for payback event
+        intent.putExtra("key", view.getTag().toString());
         startActivity(intent);
     }
 
