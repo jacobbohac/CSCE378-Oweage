@@ -7,7 +7,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
@@ -18,6 +22,30 @@ public class ContactsPage extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacts_page);
+
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_dropdown_item_1line, MainActivity.CONTACTS);
+        AutoCompleteTextView textView = (AutoCompleteTextView)
+                findViewById(R.id.contactSearch);
+        textView.setAdapter(adapter);
+
+
+        textView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> av, View arg1, int index,
+                                    long arg3) {
+                String contactName = (String) av.getItemAtPosition(index);
+
+                Intent intent = new Intent(ContactsPage.this, ContactInfoPage.class);
+
+                intent.putExtra("name", contactName);
+
+                startActivity(intent);
+
+            }
+        });
+
 
         ScrollView scroll = (ScrollView)findViewById(R.id.scrollView);
 
@@ -75,6 +103,22 @@ public class ContactsPage extends ActionBarActivity {
 
         Intent intent = new Intent(this, ContactInfoPage.class);
         intent.putExtra("name", name);
+        startActivity(intent);
+    }
+
+    public void goHome(View view) {
+
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void goContacts(View view) {
+        Intent intent = new Intent(this, ContactsPage.class);
+        startActivity(intent);
+    }
+
+    public void goSettings(View view) {
+        Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
 

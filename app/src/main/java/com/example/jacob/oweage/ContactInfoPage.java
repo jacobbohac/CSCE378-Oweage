@@ -49,10 +49,17 @@ public class ContactInfoPage extends ActionBarActivity {
 
         TextView nameTV = new TextView(this);
         TextView relationTV = new TextView(this);
+
+        TextView name = (TextView) findViewById(R.id.contactName);
+        TextView relation = (TextView) findViewById(R.id.contactRelation);
+
+        name.setText(c1.getName());
+        relation.setText(c1.getRelation());
+
         nameTV.setText(c1.getName());
         relationTV.setText(c1.getRelation());
-        contactInfo.addView(nameTV);
-        contactInfo.addView(relationTV);
+        //contactInfo.addView(nameTV);
+        //contactInfo.addView(relationTV);
 
         TextView balanceTV = (TextView) findViewById(R.id.currentBalance);
         balanceTV.setText(Double.toString(c1.getBalance()));
@@ -107,6 +114,19 @@ public class ContactInfoPage extends ActionBarActivity {
         intent.putExtra("key", view.getTag().toString());
         startActivity(intent);
     }
+
+    public void goHome(View view) {
+
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void goContacts(View view) {
+        Intent intent = new Intent(this, ContactsPage.class);
+        startActivity(intent);
+    }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

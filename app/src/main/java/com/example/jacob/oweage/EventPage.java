@@ -3,10 +3,12 @@ package com.example.jacob.oweage;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.internal.widget.AdapterViewCompat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
@@ -27,9 +29,28 @@ public class EventPage extends ActionBarActivity {
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_dropdown_item_1line, MainActivity.CONTACTS);
+
         AutoCompleteTextView textView = (AutoCompleteTextView)
                 findViewById(R.id.contactName);
+
+        textView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> av, View arg1, int index,
+                                    long arg3) {
+                String contactName = (String) av.getItemAtPosition(index);
+                System.out.println(contactName);
+                EditText amount = (EditText) findViewById(R.id.amountPaid);
+
+                for (Contact c : MainActivity.contactList) {
+                    if (c.getName().equals(contactName) && !isIOU) {
+                        amount.setText(Double.toString(c.getBalance() * -1));
+                    }
+                }
+            }
+        });
+
         textView.setAdapter(adapter);
+
 
         String s = getIntent().getExtras().getString("key");
 
@@ -100,6 +121,11 @@ public class EventPage extends ActionBarActivity {
         startActivity(intent);
     }
 
+    public void goSettings(View view) {
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -114,4 +140,5 @@ public class EventPage extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }

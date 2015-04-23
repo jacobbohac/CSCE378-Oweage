@@ -2,18 +2,21 @@ package com.example.jacob.oweage;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
 
 public class MainActivity extends ActionBarActivity {
 
+    public boolean isInitialized = false;
     public static ArrayList<Contact> contactList = new ArrayList<Contact>();
     public static final String[] CONTACTS = new String[]{
             "Aaron Aardvark",
@@ -38,17 +41,38 @@ public class MainActivity extends ActionBarActivity {
             "Alejandro Studman",
     };
 
+    /*public double getTotalBalance(){
+        double balance = 0.0;
+        for(Contact c : contactList){
+
+            balance += c.getBalance();
+        }
+        return balance;
+    }*/
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        System.out.println("ON CREATE!");
 
         initContacts();
+
+
+        /*TextView balance = (TextView)findViewById(R.id.totalBalance);
+
+        balance.setText(Double.toString(getTotalBalance()));
+        if(getTotalBalance() < 0){
+            balance.setTextColor(Color.RED);
+        }else{
+            balance.setTextColor(Color.GREEN);
+        }*/
+
+
     }
 
     public void initContacts() {
-        //Contact c = new Contact("Aaron Aardvark");
-        //contactList.add(c);
+
         ArrayList<TransactionEntry> entryList = new ArrayList<TransactionEntry>();
 
         int j = 20;
@@ -79,10 +103,19 @@ public class MainActivity extends ActionBarActivity {
         return true;
     }
 
-    //Button btn = (Button)findViewById(R.id.button3);
+    public void goHome(View view) {
 
-    public void sendMessage(View view) {
-        Intent intent = new Intent(MainActivity.this, ContactsPage.class);
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void goContacts(View view) {
+        Intent intent = new Intent(this, ContactsPage.class);
+        startActivity(intent);
+    }
+
+    public void goSettings(View view) {
+        Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
 
