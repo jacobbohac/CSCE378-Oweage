@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CSCE378-Oweage.iml" filepath="$PROJECT_DIR$/CSCE378-Oweage.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Oweage.iml" filepath="$PROJECT_DIR$/Oweage.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
