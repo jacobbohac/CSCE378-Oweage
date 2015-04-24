@@ -92,7 +92,7 @@
 
     <ScrollView
         android:layout_width="1000dp"
-        android:layout_height="100dp"
+        android:layout_height="200dp"
         android:id="@+id/scrollView"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
@@ -111,13 +111,13 @@
 
     </LinearLayout>
 
-    <Button
+    <!--Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Show Full History"
         android:id="@+id/button"
         android:layout_below="@+id/scrollView"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true" -->
 
     <Button
         android:layout_width="wrap_content"
@@ -146,10 +146,11 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Balance"
+        android:layout_centerHorizontal="true"
         android:id="@+id/textView2"
-        android:layout_below="@+id/button"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_below="@+id/scrollView"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -157,9 +158,10 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
         android:id="@+id/currentBalance"
-        android:layout_above="@+id/button3"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false" />
 
     <TextView
         android:layout_width="wrap_content"

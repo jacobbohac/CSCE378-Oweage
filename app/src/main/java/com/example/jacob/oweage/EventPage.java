@@ -1,5 +1,7 @@
 package com.example.jacob.oweage;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -16,6 +18,7 @@ import android.widget.EditText;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
@@ -45,7 +48,7 @@ public class EventPage extends ActionBarActivity {
 
                 for (Contact c : MainActivity.contactList) {
                     if (c.getName().equals(contactName) && !isIOU) {
-                        amount.setText(Double.toString(c.getBalance() * -1));
+                        //amount.setText(Double.toString(c.getBalance() * -1));
                     }
                 }
             }
@@ -85,7 +88,15 @@ public class EventPage extends ActionBarActivity {
         String eventName = "";
         double amount = 0.0;
         String contactName = "";
-        String date = "TBD";
+        String dateString = "4/24/2015";
+
+        Date d = new Date();
+
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+
+        dateString = sdf.format(d);
+
+
 
         EditText eventTV = (EditText) findViewById(R.id.eventName);
         EditText amountTV = (EditText) findViewById(R.id.amountPaid);
@@ -98,15 +109,30 @@ public class EventPage extends ActionBarActivity {
         if (isIOU) {
             amount *= -1;
         }
-        TransactionEntry entry = new TransactionEntry(date, eventName, amount);
+        TransactionEntry entry = new TransactionEntry(dateString, eventName, amount);
 
         Contact c = new Contact("c");
 
         for (Contact contact : MainActivity.contactList) {
             if (contactName.equals(contact.getName())) {
+
                 contact.addTransactionEntry(entry);
             }
         }
+
+        new AlertDialog.Builder(this)
+                .setMessage("Confirm Transaction?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        for (Contact contact : MainActivity.contactList) {
+
+                        }
+                        EventPage.this.finish();
+                    }
+                })
+                .setNegativeButton("No", null)
+                .show();
     }
 
     public void goHome(View view) {

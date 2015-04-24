@@ -54,9 +54,13 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        System.out.println("ON CREATE!");
 
-        initContacts();
+
+        if(!isInitialized) {
+            System.out.println("ON CREATE!");
+            initContacts();
+            isInitialized = true;
+        }
 
 
         /*TextView balance = (TextView)findViewById(R.id.totalBalance);
@@ -78,7 +82,7 @@ public class MainActivity extends ActionBarActivity {
         int j = 20;
         double i = 7.00;
         for (; j < 27; i += .75, j++) {
-            entryList.add(new TransactionEntry(new String("4/" + j + "/2015"), "Movie", -i));
+            entryList.add(new TransactionEntry(new String("04/" + j + "/2015"), "Movie", -i));
         }
 
         //TransactionEntry entry = new TransactionEntry("4/22/15", "Movie", 12.00);

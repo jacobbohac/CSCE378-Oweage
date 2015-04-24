@@ -16,7 +16,8 @@
         android:hint="Search Contacts"
         android:completionThreshold="1"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="100dp" />
+        android:layout_marginTop="100dp"
+        android:singleLine="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -27,7 +28,8 @@
         android:hint="Amount Owed"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="200dp" />
+        android:layout_marginTop="200dp"
+        android:singleLine="true" />
 
     <EditText
         android:layout_width="1000dp"
@@ -39,7 +41,8 @@
         android:autoText="false"
         android:editable="true"
         android:enabled="true"
-        android:hint="Event Name" />
+        android:hint="Event Name"
+        android:singleLine="true" />
 
 
     <Button

@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -71,18 +74,34 @@ public class ContactInfoPage extends ActionBarActivity {
 
             TextView t = new TextView(this);
 
-
             //Button b = new Button(this);
-            t.setWidth(1000);
+            t.setWidth(100);
             t.setHeight(125);
+
+            int color = 0;
+
             if (history.get(i).getAmount() < 0) {
-                t.setTextColor(Color.RED);
+                color = Color.RED;
+                //t.setTextColor(Color.RED);
             } else {
-                t.setTextColor(Color.GREEN);
+                color = Color.GREEN;
+                //t.setTextColor(Color.GREEN);
             }
-            t.setText(history.get(i).getDate() +
+            Spannable part1 = new SpannableString(history.get(i).getDate() +
+                    "\t\t" + history.get(i).getDescription());
+
+            part1.setSpan(new ForegroundColorSpan(Color.WHITE), 0, part1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            t.setText(part1);
+
+
+            Spannable part2 = new SpannableString("\t\t" + history.get(i).getAmount());
+            part2.setSpan(new ForegroundColorSpan(color), 0, part2.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+            t.append(part2);
+
+            /*t.setText(history.get(i).getDate() +
                     "\t\t" + history.get(i).getDescription() +
-                    "\t\t" + history.get(i).getAmount());
+                    "\t\t" + history.get(i).getAmount());*/
             t.setId(100 + i);
 
             linearLayout.addView(t);
