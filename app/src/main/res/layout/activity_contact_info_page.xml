@@ -121,7 +121,7 @@
 
     <Button
         android:background="@drawable/button_small"
-        android:layout_width="220dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:text="Add Transaction"
         android:textSize="18dp"
@@ -134,7 +134,7 @@
 
     <Button
         android:background="@drawable/button_small"
-        android:layout_width="110dp"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:text="Repay"
         android:textSize="18dp"
