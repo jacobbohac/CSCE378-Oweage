@@ -10,6 +10,7 @@ import android.text.style.ForegroundColorSpan;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -56,8 +57,9 @@ public class ContactInfoPage extends ActionBarActivity {
         name.setText(c1.getName());
         relation.setText(c1.getRelation());
 
-        nameTV.setText(c1.getName());
-        relationTV.setText(c1.getRelation());
+        //Are the next two lines needed?
+        //nameTV.setText(c1.getName());
+        //relationTV.setText(c1.getRelation());
 
         TextView balanceTV = (TextView) findViewById(R.id.currentBalance);
         balanceTV.setText(Double.toString(c1.getBalance()));
@@ -77,6 +79,7 @@ public class ContactInfoPage extends ActionBarActivity {
             //Button b = new Button(this);
             t.setWidth(100);
             t.setHeight(125);
+            t.setTextSize(16);
 
             int color = 0;
 
@@ -105,6 +108,12 @@ public class ContactInfoPage extends ActionBarActivity {
             t.setId(100 + i);
 
             linearLayout.addView(t);
+
+             /*Added below to adjust color NOT WORKING YET- HAS NO EFFECT*/
+            View ruler = new View(this); ruler.setBackgroundColor(0x3ebaa9);//0x3ebaa9
+            linearLayout.addView(ruler,
+                    new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, 4));
+            /*Added above to adjust color */
         }
 
         scroll.addView(linearLayout);

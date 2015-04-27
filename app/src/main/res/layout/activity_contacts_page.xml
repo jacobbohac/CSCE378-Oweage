@@ -95,13 +95,16 @@
         android:id="@+id/scrollView"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:paddingBottom="2dp"
         android:layout_marginTop="208dp" />
 
     <AutoCompleteTextView
         android:layout_width="1000dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="-10dp"
         android:id="@+id/contactSearch"
         android:layout_below="@+id/homeButton"
-        android:hint="Search Contacts" />
+        android:hint="Search Contacts"
+        android:clickable="false" />
 
 </RelativeLayout>

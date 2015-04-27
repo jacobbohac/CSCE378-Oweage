@@ -2,11 +2,13 @@ package com.example.jacob.oweage;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -57,9 +59,20 @@ public class ContactsPage extends ActionBarActivity {
         for (String name : MainActivity.CONTACTS) {
             if(name != null) {
                 Button b = new Button(this);
+                /*Added below to adjust color */
+                int imageResource = getResources().getIdentifier("drawable/button_for_scrollview", null, getPackageName());
+                Drawable d = getResources().getDrawable(imageResource);
+                b.setBackgroundDrawable(d);
+
+                View ruler = new View(this); ruler.setBackgroundColor(0xFFFFFF);//0x3ebaa9
+
+                linearLayout.addView(ruler,
+                        new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, 4));
+                /*Added above to adjust color */
                 b.setWidth(1000);
                 b.setHeight(25);
                 b.setTextColor(Color.BLACK);
+                b.setTextSize(20);
                 b.setText(name);
 
 

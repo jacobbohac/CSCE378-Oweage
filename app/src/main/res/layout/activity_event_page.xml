@@ -46,9 +46,11 @@
 
 
     <Button
+        android:background="@drawable/button_small"
         android:layout_width="300dp"
         android:layout_height="100dp"
         android:text="Finish"
+        android:textSize="35dp"
         android:id="@+id/button2"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
