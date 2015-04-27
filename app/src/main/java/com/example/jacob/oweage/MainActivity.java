@@ -89,7 +89,16 @@ public class MainActivity extends ActionBarActivity {
         for (String name : CONTACTS) {
 
             if (name != null) {
-                Contact c = new Contact(name, "friends");
+                Contact c = null;
+                if(name.equals("Jeff Bridges")) {
+                    c = new Contact(name, "roommate");
+                }
+                else if(name.equals("Bryan Baelish")) {
+                    c = new Contact(name, "co-conspirator");
+                }
+                else {
+                    c = new Contact(name, "friend");
+                }
                 c.setHistory(entryList);
                 contactList.add(c);
 

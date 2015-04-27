@@ -72,7 +72,7 @@ public class ContactInfoPage extends ActionBarActivity {
         ArrayList<TransactionEntry> history = c1.getHistory();
 
 
-        for (int i = 0; i < history.size(); i++) {
+        for (int i = history.size()-1; i >= 0; i--) {
 
             TextView t = new TextView(this);
 
