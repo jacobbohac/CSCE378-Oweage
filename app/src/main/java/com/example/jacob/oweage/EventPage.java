@@ -26,6 +26,8 @@ public class EventPage extends ActionBarActivity {
 
     public boolean isIOU = true;
 
+    public static String name = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //  this.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -60,6 +62,7 @@ public class EventPage extends ActionBarActivity {
 
 
         String name = getIntent().getExtras().getString("name");
+
         EditText contact = (EditText) findViewById(R.id.contactName);
         contact.setText(name);
         if(name != null) textView.dismissDropDown();
@@ -119,6 +122,8 @@ public class EventPage extends ActionBarActivity {
         eventName = eventTV.getText().toString();
         contactName = contactTV.getText().toString();
 
+        this.name = contactName;
+
         for(Contact contact : MainActivity.contactList){
             if(contactName.equals(contact.getName())){
                 contactExists = true;
@@ -141,7 +146,7 @@ public class EventPage extends ActionBarActivity {
             } catch (Exception e) {
             /* Handle bad parse input */
 
-                amountExists = true;
+                amountExists = false;
                 new AlertDialog.Builder(this)
                         .setMessage("Amount invalid")
                         .setCancelable(false)
@@ -178,8 +183,13 @@ public class EventPage extends ActionBarActivity {
                             for (Contact contact : MainActivity.contactList) {
 
                             }
-
-                            EventPage.this.finish();
+                            Intent intent = new Intent(getApplicationContext(), ContactInfoPage.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            intent.putExtra("name", EventPage.name);
+                            startActivity(intent);
+                            //EventPage.this.finish();
+                            //goContactInfo(findViewById());
                         }
                     })
                     .setNegativeButton("Cancel", null)
@@ -199,6 +209,16 @@ public class EventPage extends ActionBarActivity {
         Intent intent = new Intent(this, ContactsPage.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
+    public void goContactInfo(View view){
+        String name = (String) view.getTag();
+
+        Intent intent = new Intent(this, ContactInfoPage.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("name", name);
         startActivity(intent);
     }
 

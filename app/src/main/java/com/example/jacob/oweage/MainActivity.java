@@ -77,16 +77,17 @@ public class MainActivity extends ActionBarActivity {
 
     public void initContacts() {
 
-        ArrayList<TransactionEntry> entryList = new ArrayList<TransactionEntry>();
-
-        int j = 20;
-        double i = 7.00;
-        for (; j < 27; i += .75, j++) {
-            entryList.add(new TransactionEntry(new String("04/" + j + "/2015"), "Movie", -i));
-        }
 
         //TransactionEntry entry = new TransactionEntry("4/22/15", "Movie", 12.00);
         for (String name : CONTACTS) {
+
+            ArrayList<TransactionEntry> entryList = new ArrayList<TransactionEntry>();
+
+            int j = 20;
+            double i = 7.00;
+            for (; j < 27; i += .75, j++) {
+                entryList.add(new TransactionEntry(new String("04/" + j + "/2015"), "Movie", -i));
+            }
 
             if (name != null) {
                 Contact c = null;
