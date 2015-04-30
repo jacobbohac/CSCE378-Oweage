@@ -54,6 +54,8 @@ public class EventPage extends ActionBarActivity {
             }
         });
 
+
+
         textView.setAdapter(adapter);
 
 
@@ -102,41 +104,87 @@ public class EventPage extends ActionBarActivity {
 
 
 
+
+
         EditText eventTV = (EditText) findViewById(R.id.eventName);
         EditText amountTV = (EditText) findViewById(R.id.amountPaid);
         AutoCompleteTextView contactTV = (AutoCompleteTextView) findViewById(R.id.contactName);
 
+         /* Check if contact matches */
+        boolean contactExists = false;
+        boolean amountExists = true;
+        boolean eventExits = false;
+
+
         eventName = eventTV.getText().toString();
-        amount = Double.parseDouble(amountTV.getText().toString());
         contactName = contactTV.getText().toString();
 
-        if (isIOU) {
-            amount *= -1;
-        }
-        TransactionEntry entry = new TransactionEntry(dateString, eventName, amount);
-
-        Contact c = new Contact("c");
-
-        for (Contact contact : MainActivity.contactList) {
-            if (contactName.equals(contact.getName())) {
-
-                contact.addTransactionEntry(entry);
+        for(Contact contact : MainActivity.contactList){
+            if(contactName.equals(contact.getName())){
+                contactExists = true;
             }
         }
 
-        new AlertDialog.Builder(this)
-                .setMessage("Confirm Transaction?")
-                .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        for (Contact contact : MainActivity.contactList) {
+        if(!contactExists){
 
+            new AlertDialog.Builder(this)
+                    .setMessage("Contact doesn't exist")
+                    .setCancelable(false)
+                    .setPositiveButton("Ok", null)
+                    .show();
+        }
+
+
+        if(contactExists) {
+            try {
+                amount = Double.parseDouble(amountTV.getText().toString());
+            } catch (Exception e) {
+            /* Handle bad parse input */
+
+                amountExists = true;
+                new AlertDialog.Builder(this)
+                        .setMessage("Amount invalid")
+                        .setCancelable(false)
+                        .setPositiveButton("Ok", null)
+                        .show();
+            }
+        }
+
+
+
+
+
+
+
+        if(contactExists && amountExists) {
+            if (isIOU) {
+                amount *= -1;
+            }
+            TransactionEntry entry = new TransactionEntry(dateString, eventName, amount);
+
+            Contact c = new Contact("c");
+
+            for (Contact contact : MainActivity.contactList) {
+                if (contactName.equals(contact.getName())) {
+                    contact.addTransactionEntry(entry);
+                }
+            }
+
+            new AlertDialog.Builder(this)
+                    .setMessage("Confirm Event?")
+                    .setCancelable(false)
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            for (Contact contact : MainActivity.contactList) {
+
+                            }
+
+                            EventPage.this.finish();
                         }
-                        EventPage.this.finish();
-                    }
-                })
-                .setNegativeButton("No", null)
-                .show();
+                    })
+                    .setNegativeButton("Cancel", null)
+                    .show();
+        }
     }
 
     public void goHome(View view) {
