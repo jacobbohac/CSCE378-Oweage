@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.internal.widget.AdapterViewCompat;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,6 +20,7 @@ import android.widget.EditText;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -55,6 +58,35 @@ public class EventPage extends ActionBarActivity {
         });
 
 
+        final EditText amountTV = (EditText) findViewById(R.id.amountPaid);
+
+        amountTV.addTextChangedListener(new TextWatcher() {
+            DecimalFormat dec = new DecimalFormat("0.00");
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!s.toString().matches("^\\$(\\d{1,3}(\\,\\d{3})*|(\\d+))(\\.\\d{2})?$")) {
+                    String userInput = "" + s.toString().replaceAll("[^\\d]", "");
+                    if (userInput.length() > 0) {
+                        Float in = Float.parseFloat(userInput);
+                        float percen = in / 100;
+                        amountTV.setText("$" + dec.format(percen));
+                        amountTV.setSelection(amountTV.getText().length());
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
 
         textView.setAdapter(adapter);
 
@@ -69,6 +101,7 @@ public class EventPage extends ActionBarActivity {
         if (s.equals("1")) {
             /// This indicates a payback event
             /// Auto fill the eventName
+
             isIOU = false;
             EditText eventName = (EditText) findViewById(R.id.eventName);
             eventName.setText("Payback");
@@ -107,13 +140,15 @@ public class EventPage extends ActionBarActivity {
 
 
         EditText eventTV = (EditText) findViewById(R.id.eventName);
-        EditText amountTV = (EditText) findViewById(R.id.amountPaid);
+        final EditText amountTV = (EditText) findViewById(R.id.amountPaid);
         AutoCompleteTextView contactTV = (AutoCompleteTextView) findViewById(R.id.contactName);
 
          /* Check if contact matches */
         boolean contactExists = false;
         boolean amountExists = true;
         boolean eventExits = false;
+
+
 
 
         eventName = eventTV.getText().toString();
@@ -141,7 +176,7 @@ public class EventPage extends ActionBarActivity {
             } catch (Exception e) {
             /* Handle bad parse input */
 
-                amountExists = true;
+                amountExists = false;
                 new AlertDialog.Builder(this)
                         .setMessage("Amount invalid")
                         .setCancelable(false)
@@ -178,6 +213,7 @@ public class EventPage extends ActionBarActivity {
                             for (Contact contact : MainActivity.contactList) {
 
                             }
+
 
                             EventPage.this.finish();
                         }
