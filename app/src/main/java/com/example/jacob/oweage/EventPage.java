@@ -57,8 +57,12 @@ public class EventPage extends ActionBarActivity {
         textView.setAdapter(adapter);
 
 
-        String s = getIntent().getExtras().getString("key");
+        String name = getIntent().getExtras().getString("name");
+        EditText contact = (EditText) findViewById(R.id.contactName);
+        contact.setText(name);
+        if(name != null) textView.dismissDropDown();
 
+        String s = getIntent().getExtras().getString("key");
 
         if (s.equals("1")) {
             /// This indicates a payback event

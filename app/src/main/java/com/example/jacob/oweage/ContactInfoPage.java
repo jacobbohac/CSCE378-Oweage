@@ -22,6 +22,7 @@ import java.util.ArrayList;
 
 public class ContactInfoPage extends ActionBarActivity {
 
+    String name = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +36,7 @@ public class ContactInfoPage extends ActionBarActivity {
         linearLayout.setOrientation(LinearLayout.VERTICAL);
 
         String s = getIntent().getExtras().getString("name");
+        this.name = s;
 
         Contact c1 = new Contact("c1");
 
@@ -137,6 +139,7 @@ public class ContactInfoPage extends ActionBarActivity {
         // This passes a 0 for IOU event
         //               1 for payback event
         intent.putExtra("key", view.getTag().toString());
+        intent.putExtra("name", this.name);
 
         startActivity(intent);
     }
