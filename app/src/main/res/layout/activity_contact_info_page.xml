@@ -153,6 +153,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Balance"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
         android:id="@+id/textView2"
         android:layout_below="@+id/scrollView"
         android:layout_alignParentLeft="false"

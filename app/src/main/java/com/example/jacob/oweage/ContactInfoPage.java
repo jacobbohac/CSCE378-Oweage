@@ -17,6 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 
 
@@ -32,6 +33,7 @@ public class ContactInfoPage extends ActionBarActivity {
 
 
         ScrollView scroll = (ScrollView) findViewById(R.id.scrollView);
+
         LinearLayout linearLayout = new LinearLayout(this);
         linearLayout.setOrientation(LinearLayout.VERTICAL);
 
@@ -64,7 +66,14 @@ public class ContactInfoPage extends ActionBarActivity {
         //relationTV.setText(c1.getRelation());
 
         TextView balanceTV = (TextView) findViewById(R.id.currentBalance);
-        balanceTV.setText(Double.toString(c1.getBalance()));
+
+
+
+        NumberFormat formatter = NumberFormat.getCurrencyInstance();
+        String moneyString = formatter.format(c1.getBalance());
+
+        balanceTV.setText(moneyString);
+
         if (c1.getBalance() < 0) {
             balanceTV.setTextColor(Color.RED);
         } else {
@@ -78,31 +87,38 @@ public class ContactInfoPage extends ActionBarActivity {
 
             TextView t = new TextView(this);
 
+
             //Button b = new Button(this);
             t.setWidth(100);
             t.setHeight(125);
             t.setTextSize(16);
 
+
             int color = 0;
 
             if (history.get(i).getAmount() < 0) {
+
                 color = Color.RED;
                 //t.setTextColor(Color.RED);
             } else {
+
                 color = Color.GREEN;
                 //t.setTextColor(Color.GREEN);
             }
-            Spannable part1 = new SpannableString(history.get(i).getDate() +
-                    "\t\t" + history.get(i).getDescription());
+
+            String amountString = formatter.format(history.get(i).getAmount());
+
+            Spannable part1 = new SpannableString( String.format("%-20s", history.get(i).getDate() ));
+            Spannable part2 = new SpannableString( String.format("%-20s", history.get(i).getDescription()));
+            Spannable part3 = new SpannableString( String.format("%-15s", amountString));
 
             part1.setSpan(new ForegroundColorSpan(Color.WHITE), 0, part1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            part2.setSpan(new ForegroundColorSpan(Color.WHITE), 0, part2.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            part3.setSpan(new ForegroundColorSpan(color), 0, part3.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
             t.setText(part1);
-
-
-            Spannable part2 = new SpannableString("\t\t" + history.get(i).getAmount());
-            part2.setSpan(new ForegroundColorSpan(color), 0, part2.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-
             t.append(part2);
+            t.append(part3);
 
             /*t.setText(history.get(i).getDate() +
                     "\t\t" + history.get(i).getDescription() +

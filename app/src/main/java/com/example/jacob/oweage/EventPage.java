@@ -29,6 +29,9 @@ public class EventPage extends ActionBarActivity {
 
     public boolean isIOU = true;
     public static String name = "";
+    public static Contact c1;
+    public static TransactionEntry te;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -200,10 +203,12 @@ public class EventPage extends ActionBarActivity {
                 amount *= -1;
             }
             TransactionEntry entry = new TransactionEntry(dateString, eventName, amount);
+            te = entry;
 
            for (Contact contact : MainActivity.contactList) {
                 if (contactName.equals(contact.getName())) {
-                    contact.addTransactionEntry(entry);
+                    c1 = contact;
+                    //contact.addTransactionEntry(entry);
                 }
             }
 
@@ -212,6 +217,7 @@ public class EventPage extends ActionBarActivity {
                     .setCancelable(false)
                     .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
+                                c1.addTransactionEntry(te);
                                Intent intent = new Intent(getApplicationContext(), ContactInfoPage.class);
                                                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
