@@ -28,6 +28,7 @@ import java.util.Date;
 public class EventPage extends ActionBarActivity {
 
     public boolean isIOU = true;
+    public static String name = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -154,6 +155,8 @@ public class EventPage extends ActionBarActivity {
         eventName = eventTV.getText().toString();
         contactName = contactTV.getText().toString();
 
+
+
         for(Contact contact : MainActivity.contactList){
             if(contactName.equals(contact.getName())){
                 contactExists = true;
@@ -171,12 +174,13 @@ public class EventPage extends ActionBarActivity {
 
 
         if(contactExists) {
+            this.name = contactName;
             try {
-                amount = Double.parseDouble(amountTV.getText().toString());
+                amount = Double.parseDouble(amountTV.getText().toString().substring(1));
+                System.out.println(amount + "!!!!!!!!!!!!!!!!");
             } catch (Exception e) {
             /* Handle bad parse input */
-
-                amountExists = true;
+                 amountExists = false;
                 new AlertDialog.Builder(this)
                         .setMessage("Amount invalid")
                         .setCancelable(false)
@@ -197,9 +201,7 @@ public class EventPage extends ActionBarActivity {
             }
             TransactionEntry entry = new TransactionEntry(dateString, eventName, amount);
 
-            Contact c = new Contact("c");
-
-            for (Contact contact : MainActivity.contactList) {
+           for (Contact contact : MainActivity.contactList) {
                 if (contactName.equals(contact.getName())) {
                     contact.addTransactionEntry(entry);
                 }
@@ -210,11 +212,11 @@ public class EventPage extends ActionBarActivity {
                     .setCancelable(false)
                     .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                            for (Contact contact : MainActivity.contactList) {
-
-                            }
-
-                            EventPage.this.finish();
+                               Intent intent = new Intent(getApplicationContext(), ContactInfoPage.class);
+                                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                        intent.putExtra("name", EventPage.name);
+                                                        startActivity(intent);
                         }
                     })
                     .setNegativeButton("Cancel", null)
