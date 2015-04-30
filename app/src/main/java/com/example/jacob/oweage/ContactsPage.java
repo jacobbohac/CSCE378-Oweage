@@ -81,6 +81,8 @@ public class ContactsPage extends ActionBarActivity {
                 b.setOnClickListener(new View.OnClickListener(){
                     public void onClick(View v){
                         Intent intent = new Intent(ContactsPage.this, ContactInfoPage.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
                         intent.putExtra("name",(String) v.getTag());
 
@@ -115,6 +117,8 @@ public class ContactsPage extends ActionBarActivity {
         String name = (String) view.getTag();
 
         Intent intent = new Intent(this, ContactInfoPage.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("name", name);
         startActivity(intent);
     }
@@ -122,16 +126,22 @@ public class ContactsPage extends ActionBarActivity {
     public void goHome(View view) {
 
         Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 
     public void goContacts(View view) {
         Intent intent = new Intent(this, ContactsPage.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 
     public void goSettings(View view) {
         Intent intent = new Intent(this, SettingsActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 
