@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.internal.widget.AdapterViewCompat;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,6 +20,7 @@ import android.widget.EditText;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -53,6 +56,38 @@ public class EventPage extends ActionBarActivity {
                 }
             }
         });
+
+
+        final EditText mEditPrice = (EditText) findViewById(R.id.amountPaid);
+    mEditPrice.addTextChangedListener(new TextWatcher() {
+        DecimalFormat dec = new DecimalFormat("0.00");
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            if(!s.toString().matches("^\\$(\\d{1,3}(\\,\\d{3})*|(\\d+))(\\.\\d{2})?$"))
+            {
+                String userInput= ""+s.toString().replaceAll("[^\\d]", "");
+                if (userInput.length() > 0) {
+                    Float in=Float.parseFloat(userInput);
+                    float percen = in/100;
+                    mEditPrice.setText("$"+dec.format(percen));
+                    mEditPrice.setSelection(mEditPrice.getText().length());
+                }
+            }
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    });
+
 
 
 
