@@ -108,9 +108,9 @@ public class ContactInfoPage extends ActionBarActivity {
 
             String amountString = formatter.format(history.get(i).getAmount());
 
-            Spannable part1 = new SpannableString( String.format("%-20s", history.get(i).getDate() ));
-            Spannable part2 = new SpannableString( String.format("%-20s", history.get(i).getDescription()));
-            Spannable part3 = new SpannableString( String.format("%-15s", amountString));
+            Spannable part1 = new SpannableString( String.format("%-15s", history.get(i).getDate() ));
+            Spannable part2 = new SpannableString( String.format("%-28s", history.get(i).getDescription()));
+            Spannable part3 = new SpannableString( String.format("%-20s", amountString));
 
             part1.setSpan(new ForegroundColorSpan(Color.WHITE), 0, part1.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             part2.setSpan(new ForegroundColorSpan(Color.WHITE), 0, part2.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
